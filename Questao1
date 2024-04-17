@@ -1,0 +1,43 @@
+const alunos = [];
+
+function adicionarAluno(id, nome, nota) {
+  const novoAluno = {
+    id,
+    nome,
+    nota,
+  };
+  alunos.push(novoAluno);
+  console.log(`Aluno ${nome} adicionado com sucesso!`);
+}
+
+function buscarAlunoPorId(id) {
+  const alunoEncontrado = alunos.find((aluno) => aluno.id === id);
+  if (alunoEncontrado) {
+    console.log(`Aluno com ID ${id}: ${alunoEncontrado.nome}`);
+    return alunoEncontrado;
+  } else {
+    console.log(`Aluno com ID ${id} não encontrado.`);
+    return null;
+  }
+}
+
+function calcularMediaNotas() {
+  if (alunos.length === 0) {
+    console.log(`Não há alunos cadastrados para calcular a média.`);
+    return 0;
+  }
+
+  const totalNotas = alunos.reduce((soma, aluno) => soma + aluno.nota, 0);
+  const media = totalNotas / alunos.length;
+  console.log(`A média das notas dos alunos é: ${media}`);
+  return media;
+}
+
+
+adicionarAluno(1, "João", 8.5);
+adicionarAluno(2, "Maria", 9.2);
+adicionarAluno(3, "Pedro", 7.8);
+
+buscarAlunoPorId(2); 
+
+calcularMediaNotas();
